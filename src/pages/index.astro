@@ -24,34 +24,32 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Get Started',
+        href: '/contact',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Our Services', href: '#services' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro 5.0</span> + Tailwind CSS
+      Transform Your Business with <span class="hidden xl:inline">Cutting-Edge</span>
+      <span class="text-accent dark:text-white"> Technology Solutions</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
+      <span class="font-semibold">TechResona</span> delivers enterprise-grade cloud solutions, web development, AI automation, and IT services to businesses across India. From cloud migration to digital transformation, we're your trusted technology partner.
     </Fragment>
   </Hero>
 
-  <!-- Note Widget ******************* -->
+  <!-- Stats Widget ****************** -->
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+  <Stats
+    stats={[
+      { title: 'Happy Clients', amount: '200+' },
+      { title: 'Cloud Migrations', amount: '150+' },
+      { title: 'Websites Delivered', amount: '300+' },
+      { title: 'Uptime SLA', amount: '99.9%' },
+    ]}
+  />
 
   <!-- Features Widget *************** -->
 
