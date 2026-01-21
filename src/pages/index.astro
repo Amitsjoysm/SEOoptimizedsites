@@ -220,3 +220,27 @@ const metadata = {
                   Expert insights and practical guides to help your business thrive in the digital age.`}
   />
 
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact Us',
+        href: '/contact',
+      },
+      {
+        text: 'Learn More',
+        href: '/about',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Transform&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Your Business?</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Let's discuss your technology needs and create a customized solution that drives growth.<br class="hidden md:inline" />
+      Get a free consultation with our experts today!
+    </Fragment>
+  </CallToAction>
+</Layout>
