@@ -61,6 +61,12 @@ const postCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
 
+    // SEO Enhancement Fields
+    focusKeyword: z.string().optional(),
+    metaDescription: z.string().optional(),
+    metaTitle: z.string().optional(),
+    keywords: z.string().optional(),
+
     metadata: metadataDefinition(),
   }),
 });
