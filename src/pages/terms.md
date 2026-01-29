@@ -3,7 +3,7 @@ title: 'Terms and Conditions'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated_: January 06, 2023
+_Last updated_: January 10, 2026
 
 Please read these terms and conditions carefully before using Our Service.
 
@@ -17,21 +17,19 @@ The words of which the initial letter is capitalized have meanings defined under
 
 For the purposes of these Terms and Conditions:
 
-- **Affiliate** means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to TechResona Pvt Ltd, Kharadi, Pune 411047, Maharashtra, India.
 
-- **Country** refers to: California, United States
+- **Country** refers to: Maharashtra, India
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to AstroWind LLC, 1 Cupertino, CA 95014.
+- **Customer** or **Client** means the individual or business entity accessing or using the Service.
 
-- **Device** means any device that can access the Service such as a computer, a cellphone or a digital tablet.
+- **Device** means any device that can access the Service such as a computer, a mobile phone or a digital tablet.
 
-- **Service** refers to the Website.
+- **Service** refers to the IT services, cloud solutions, web development, SEO services, AI automation, and related technology services provided by TechResona Pvt Ltd through the Website.
 
-- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement is a Demo.
+- **Terms and Conditions** (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.
 
-- **Third-party Social Media Service** means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.
-
-- **Website** refers to AstroWind, accessible from [https://astrowind.vercel.app](https://astrowind.vercel.app)
+- **Website** refers to TechResona, accessible from [https://techresona.com](https://techresona.com)
 
 - **You** means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
 
@@ -39,82 +37,193 @@ For the purposes of these Terms and Conditions:
 
 These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.
 
-Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.
+Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users, clients, and others who access or use the Service.
 
 By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.
 
-You represent that you are over the age of 18\. The Company does not permit those under 18 to use the Service.
+You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service without parental consent.
 
-Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.
+Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Service and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.
 
-## Links to Other Websites
+## Services Provided
 
-Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.
+### IT Services and Solutions
 
-The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.
+TechResona Pvt Ltd provides various information technology services including but not limited to:
 
-We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.
+- Cloud migration and management services (Azure, AWS)
+- Web design and development services
+- SEO and digital marketing services
+- AI and business automation solutions
+- Microsoft 365 and Google Workspace licensing
+- IT consulting and managed services
 
-## Termination
+### Service Level Agreements
 
-We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.
+Specific Service Level Agreements (SLAs) may be provided in separate documentation for enterprise clients and managed services contracts. Standard support hours are Monday to Friday, 9:00 AM to 6:00 PM IST, unless otherwise agreed upon in writing.
 
-Upon termination, Your right to use the Service will cease immediately.
+## Payment Terms
+
+### Pricing and Fees
+
+- All prices are quoted in Indian Rupees (INR) unless otherwise stated.
+- Pricing may vary based on project scope, complexity, and requirements.
+- Custom quotes will be provided for enterprise solutions.
+
+### Payment Schedule
+
+- For project-based work: Typically 50% advance payment, 50% upon completion.
+- For monthly services: Payment due at the beginning of each billing cycle.
+- For annual contracts: Payment terms as specified in the service agreement.
+
+### Late Payments
+
+Payments not received within 15 days of the due date may result in suspension of services. Late payment charges of 1.5% per month may apply.
+
+## Intellectual Property Rights
+
+### Client Ownership
+
+Upon full payment for services, clients retain ownership of:
+- Custom-developed websites and applications
+- Original content created specifically for the client
+- Designs and deliverables created under the service agreement
+
+### Company Ownership
+
+TechResona retains ownership of:
+- Proprietary tools, frameworks, and methodologies
+- Pre-existing intellectual property and code libraries
+- Internal processes and documentation
+
+### Third-Party Licenses
+
+Some services may utilize third-party software, plugins, or services that are subject to their respective licenses and terms.
+
+## Client Responsibilities
+
+### Information and Access
+
+Clients agree to:
+- Provide accurate and complete information required for service delivery
+- Grant necessary access to systems, accounts, and resources
+- Respond to queries and requests in a timely manner
+- Review and approve deliverables within agreed timeframes
+
+### Content and Materials
+
+Clients are responsible for:
+- Ensuring they have rights to any content, images, or materials provided
+- Accuracy and legality of all content supplied
+- Obtaining necessary permissions and licenses
+
+## Service Warranties and Disclaimers
+
+### Professional Services
+
+We warrant that services will be performed with reasonable skill and care in accordance with industry standards. However, we do not guarantee specific results, rankings, traffic levels, or business outcomes.
+
+### Website and Application Performance
+
+While we strive for optimal performance:
+- We do not guarantee 100% uptime for websites hosted on third-party servers
+- Performance may be affected by factors outside our control
+- SEO results depend on many factors including search engine algorithms
+
+### "AS IS" Services
+
+Certain services, particularly those involving third-party platforms, are provided "AS IS" without warranties of any kind beyond our control.
 
 ## Limitation of Liability
 
-Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.
+To the maximum extent permitted by law:
 
-To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.
+- Our total liability shall not exceed the amount paid by the client for the specific service in question
+- We are not liable for indirect, consequential, or incidental damages
+- We are not liable for losses arising from third-party service failures
+- We are not liable for business losses, data loss, or revenue loss beyond our direct control
 
-Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.
+## Confidentiality
 
-## "AS IS" and "AS AVAILABLE" Disclaimer
+Both parties agree to:
+- Keep confidential information private and secure
+- Use confidential information only for the purposes of service delivery
+- Not disclose confidential information to third parties without consent
+- Return or destroy confidential information upon request
 
-The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.
+## Termination
 
-Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.
+### By Client
 
-Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.
+Clients may terminate services by:
+- Providing 30 days written notice for ongoing services
+- Paying for all services rendered up to the termination date
+- Completing any minimum contract term if applicable
 
-## Governing Law
+### By Company
 
-The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.
+We may terminate or suspend service immediately for:
+- Non-payment of fees
+- Breach of these Terms and Conditions
+- Illegal or unethical use of services
+- Abusive behavior towards staff
 
-## Disputes Resolution
+### Effects of Termination
 
-If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.
+Upon termination:
+- All outstanding fees become immediately due
+- Access to services will be discontinued
+- Client data may be retained for 30 days before permanent deletion
+- Final deliverables will be provided upon full payment
 
-## For European Union (EU) Users
+## Dispute Resolution
 
-If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which you are resident in.
+### Informal Resolution
 
-## United States Legal Compliance
+In the event of any dispute, both parties agree to first attempt informal resolution through good-faith negotiations.
 
-You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.
+### Arbitration
 
-## Severability and Waiver
+If informal resolution fails, disputes shall be resolved through arbitration in Pune, Maharashtra, India, in accordance with the Arbitration and Conciliation Act, 1996.
 
-### Severability
+### Jurisdiction
 
-If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.
+These Terms shall be governed by the laws of India. Courts in Pune, Maharashtra shall have exclusive jurisdiction.
 
-### Waiver
+## Indemnification
 
-Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.
+You agree to indemnify and hold TechResona Pvt Ltd harmless from any claims, damages, or expenses arising from:
+- Your violation of these Terms
+- Your violation of any rights of third parties
+- Your use of the Service in violation of applicable laws
+- Content or materials you provide that infringe intellectual property rights
 
-## Translation Interpretation
+## Changes to Terms and Conditions
 
-These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the original English text shall prevail in the case of a dispute.
+We reserve the right to modify these Terms at any time. We will provide notice of material changes by:
+- Posting updated Terms on the Website
+- Sending email notification to registered clients
+- Providing 30 days notice before changes take effect
 
-## Changes to These Terms and Conditions
+Continued use of services after changes indicates acceptance of modified Terms.
 
-We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.
+## Severability
 
-By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.
+If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect.
+
+## Entire Agreement
+
+These Terms constitute the entire agreement between You and TechResona Pvt Ltd regarding the Service and supersede all prior agreements and understandings, whether written or oral.
 
 ## Contact Us
 
-If you have any questions about these Terms and Conditions, You can contact us:
+If you have any questions about these Terms and Conditions, please contact us:
 
-- By email: somecoolemail@domain.com
+- **Email**: info@techresona.com
+- **Phone**: +91 7517402788
+- **Address**: TechResona Pvt Ltd, Kharadi, Pune 411047, Maharashtra, India
+- **Website**: https://techresona.com
+
+---
+
+**TechResona Pvt Ltd** - Your Trusted Partner for Cloud Solutions, Web Development & IT Services
