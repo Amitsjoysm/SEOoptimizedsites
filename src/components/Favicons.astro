@@ -2,18 +2,39 @@
 import favIcon from '~/assets/favicons/favicon.ico';
 import favicon16 from '~/assets/favicons/favicon-16x16.png';
 import favicon32 from '~/assets/favicons/favicon-32x32.png';
+import favicon48 from '~/assets/favicons/favicon-48x48.png';
 import appleTouchIcon from '~/assets/favicons/apple-touch-icon.png';
 import androidChrome192 from '~/assets/favicons/android-chrome-192x192.png';
 import androidChrome512 from '~/assets/favicons/android-chrome-512x512.png';
+import icon96 from '~/assets/favicons/icon-96x96.png';
+import icon144 from '~/assets/favicons/icon-144x144.png';
 ---
 
-<!-- Favicons - TechResona Brand -->
+<!-- Favicons - TechResona Brand (Optimized) -->
 <link rel="icon" type="image/x-icon" href={favIcon} />
 <link rel="icon" type="image/png" sizes="16x16" href={favicon16.src} />
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32.src} />
+<link rel="icon" type="image/png" sizes="48x48" href={favicon48.src} />
+
+<!-- Apple Touch Icons -->
 <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+
+<!-- Android Chrome Icons -->
+<link rel="icon" type="image/png" sizes="96x96" href={icon96.src} />
+<link rel="icon" type="image/png" sizes="144x144" href={icon144.src} />
 <link rel="icon" type="image/png" sizes="192x192" href={androidChrome192.src} />
 <link rel="icon" type="image/png" sizes="512x512" href={androidChrome512.src} />
+
+<!-- PWA Manifest -->
 <link rel="manifest" href="/site.webmanifest" />
+
+<!-- Theme Colors -->
 <meta name="theme-color" content="#0161EF" />
 <meta name="msapplication-TileColor" content="#0161EF" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+
+<!-- Additional PWA Meta Tags -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="TechResona" />
