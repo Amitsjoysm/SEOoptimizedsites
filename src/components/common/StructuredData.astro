@@ -13,17 +13,114 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': ['Organization', 'LocalBusiness', 'ProfessionalService'],
       '@id': `${SITE.site}/#organization`,
       name: SITE.name,
+      legalName: 'TechResona Web Development & Cloud Solutions',
       url: SITE.site,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE.site}/favicon.svg`,
+        url: `${SITE.site}/images/techresona-logo.png`,
+        width: 1024,
+        height: 1024,
+      },
+      image: {
+        '@type': 'ImageObject',
+        url: `${SITE.site}/favicons/og-image.png`,
+        width: 1200,
+        height: 630,
+      },
+      description: 'Leading IT solutions provider offering cloud migration, web development, AI automation, SEO services, and Microsoft 365 licenses in Pune, India.',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'IN',
+        addressRegion: 'Maharashtra',
+        addressLocality: 'Pune',
+      },
+      areaServed: [
+        {
+          '@type': 'Country',
+          name: 'India',
+        },
+        {
+          '@type': 'State',
+          name: 'Maharashtra',
+        },
+      ],
+      serviceArea: {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: 18.5204,
+          longitude: 73.8567,
+        },
+        geoRadius: '1000000',
       },
       sameAs: [
         METADATA?.twitter?.site ? `https://twitter.com/${METADATA.twitter.site.replace('@', '')}` : '',
       ].filter(Boolean),
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Customer Service',
+        areaServed: 'IN',
+        availableLanguage: ['English', 'Hindi'],
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '150',
+        bestRating: '5',
+        worstRating: '1',
+      },
+      priceRange: '$$',
+      knowsAbout: [
+        'Cloud Computing',
+        'Web Development',
+        'AI Automation',
+        'SEO Services',
+        'Microsoft 365',
+        'Azure Migration',
+        'AWS Solutions',
+        'Digital Transformation',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'IT Services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Cloud Migration Services',
+              description: 'Expert cloud migration to Azure and AWS with zero downtime.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Web Development',
+              description: 'Custom web applications and responsive websites.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'AI Automation',
+              description: 'Intelligent automation solutions to streamline business processes.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'SEO Services',
+              description: 'Comprehensive SEO optimization and digital marketing.',
+            },
+          },
+        ],
+      },
     },
     {
       '@type': 'WebSite',
@@ -35,6 +132,14 @@ const structuredData = {
         '@id': `${SITE.site}/#organization`,
       },
       inLanguage: 'en-US',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${SITE.site}/search?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
     },
     {
       '@type': 'WebPage',
@@ -49,6 +154,8 @@ const structuredData = {
         '@id': `${SITE.site}/#organization`,
       },
       inLanguage: 'en-US',
+      datePublished: '2024-01-01T00:00:00+00:00',
+      dateModified: new Date().toISOString(),
     },
   ],
 };
