@@ -13,6 +13,7 @@ import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 import PWA from '~/components/common/PWA.astro';
+import Preloader from '~/components/common/Preloader.astro';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -29,6 +30,7 @@ const { language, textDirection } = I18N;
   <head>
     <CommonMeta />
     <Favicons />
+    <Preloader />
     <CustomStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
