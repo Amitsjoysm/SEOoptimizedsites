@@ -23,10 +23,17 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
-  site: 'https://astrowind.vercel.app',
+  site: 'https://techresona.com',
   trailingSlash: 'ignore',
   build: {
     inlineStylesheets: 'auto',
+  },
+  
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/noop'
+    },
+    domains: ['cdn.pixabay.com', 'images.unsplash.com'],
   },
 
   integrations: [
