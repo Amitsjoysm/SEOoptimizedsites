@@ -1,0 +1,15 @@
+---
+// Image Preloader Component
+// Preloads critical images for faster perceived performance
+const preloadImages = [
+  '/images/techresona-logo.png',
+  '/favicons/og-image.png',
+];
+---
+
+{preloadImages.map((src) => (
+  <link rel="preload" as="image" href={src} />
+))}
+
+<!-- Preload critical fonts if any -->
+<!-- <link rel="preload" as="font" type="font/woff2" href="/fonts/inter.woff2" crossorigin /> -->
