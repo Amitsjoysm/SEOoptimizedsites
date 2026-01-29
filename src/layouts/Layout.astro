@@ -12,6 +12,7 @@ import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
+import PWA from '~/components/common/PWA.astro';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -34,11 +35,13 @@ const { language, textDirection } = I18N;
     <SiteVerification />
     <Analytics />
     <StructuredData {...metadata} />
+    <link rel="author" href="/humans.txt" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
 
     <BasicScripts />
+    <PWA />
   </body>
 </html>
