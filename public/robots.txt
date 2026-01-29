@@ -1,6 +1,9 @@
+# TechResona - Robots.txt
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /_astro/
 
-Sitemap: https://astrowind.vercel.app/sitemap-index.xml
+# Sitemaps
+Sitemap: https://techresona.com/sitemap-index.xml
+Sitemap: https://techresona.com/sitemap-0.xml
