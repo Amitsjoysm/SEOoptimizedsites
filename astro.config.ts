@@ -27,20 +27,41 @@ export default defineConfig({
   trailingSlash: 'ignore',
   build: {
     inlineStylesheets: 'auto',
+    assets: '_astro',
   },
+  
+  compressHTML: true,
   
   image: {
     service: {
-      entrypoint: 'astro/assets/services/noop'
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false,
+      },
     },
     domains: ['cdn.pixabay.com', 'images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+      },
+    ],
   },
 
   integrations: [
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US',
+        },
+      },
+    }),
     mdx(),
     icon({
       include: {
@@ -70,11 +91,31 @@ export default defineConfig({
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,
+          collapseWhitespace: true,
+          removeComments: true,
+          removeEmptyAttributes: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true,
+          minifyCSS: true,
+          minifyJS: true,
         },
       },
       Image: false,
       JavaScript: true,
-      SVG: false,
+      SVG: {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+              },
+            },
+          },
+        ],
+      },
       Logger: 1,
     }),
 
@@ -92,6 +133,16 @@ export default defineConfig({
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),
+      },
+    },
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['astro'],
+          },
+        },
       },
     },
   },
