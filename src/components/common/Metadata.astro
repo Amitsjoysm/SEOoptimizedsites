@@ -69,11 +69,21 @@ const seoProps: AstroSeoProps = merge(
 
 <!-- Additional SEO and Performance Meta Tags -->
 <meta name="author" content={SITE?.name} />
+<meta name="publisher" content={SITE?.name} />
 <link rel="canonical" href={canonical} />
 {description && <meta name="description" content={description} />}
 <meta name="generator" content={Astro.generator} />
 
-<!-- Geo Tags (optional - can be customized based on target audience) -->
-<meta name="geo.region" content="US" />
-<meta name="geo.position" content="0;0" />
-<meta name="ICBM" content="0, 0" />
+<!-- Geo Tags for Pune, India -->
+<meta name="geo.region" content="IN-MH" />
+<meta name="geo.placename" content="Pune" />
+<meta name="geo.position" content="18.5204;73.8567" />
+<meta name="ICBM" content="18.5204, 73.8567" />
+
+<!-- Additional Business Meta Tags -->
+<meta name="rating" content="General" />
+<meta name="distribution" content="global" />
+<meta name="revisit-after" content="7 days" />
+<meta name="coverage" content="Worldwide" />
+<meta name="language" content="English" />
+<meta name="target" content="all" />
