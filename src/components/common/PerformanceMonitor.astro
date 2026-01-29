@@ -1,0 +1,66 @@
+---
+// Performance Monitoring Component
+// Tracks Core Web Vitals and reports to console
+---
+
+<script is:inline>
+  // Core Web Vitals monitoring
+  if (typeof window !== 'undefined') {
+    // Measure First Contentful Paint (FCP)
+    const paintObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.name === 'first-contentful-paint') {
+          console.log('FCP:', entry.startTime.toFixed(2), 'ms');
+        }
+      }
+    });
+    
+    if (PerformanceObserver.supportedEntryTypes.includes('paint')) {
+      paintObserver.observe({ type: 'paint', buffered: true });
+    }
+
+    // Measure Largest Contentful Paint (LCP)
+    const lcpObserver = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime, 'ms');
+    });
+    
+    if (PerformanceObserver.supportedEntryTypes.includes('largest-contentful-paint')) {
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+    }
+
+    // Measure Cumulative Layout Shift (CLS)
+    let clsValue = 0;
+    const clsObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (!entry.hadRecentInput) {
+          clsValue += entry.value;
+          console.log('CLS:', clsValue.toFixed(4));
+        }
+      }
+    });
+    
+    if (PerformanceObserver.supportedEntryTypes.includes('layout-shift')) {
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+    }
+
+    // Measure First Input Delay (FID)
+    const fidObserver = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        console.log('FID:', entry.processingStart - entry.startTime, 'ms');
+      }
+    });
+    
+    if (PerformanceObserver.supportedEntryTypes.includes('first-input')) {
+      fidObserver.observe({ type: 'first-input', buffered: true });
+    }
+
+    // Page Load Time
+    window.addEventListener('load', () => {
+      const perfData = performance.timing;
+      const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+      console.log('Page Load Time:', pageLoadTime, 'ms');
+    });
+  }
+</script>
