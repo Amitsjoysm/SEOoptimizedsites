@@ -154,7 +154,7 @@ SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T0AA6UDJP70/B0AAMTC7U49/6NQ6X
 
 **Frontend** (`/app/.env`):
 ```env
-PUBLIC_BACKEND_URL=https://seo-image-optimize.preview.emergentagent.com
+PUBLIC_BACKEND_URL=https://redundant-removal.preview.emergentagent.com
 ```
 
 ### Supervisor Configuration
