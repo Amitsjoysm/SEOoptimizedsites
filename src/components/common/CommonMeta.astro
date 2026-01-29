@@ -3,17 +3,32 @@ import { getAsset } from '~/utils/permalinks';
 ---
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
 <!-- Resource Hints for Performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="dns-prefetch" href="https://cdn.pixabay.com" />
+<link rel="dns-prefetch" href="https://images.unsplash.com" />
 
 <!-- Sitemap -->
 <link rel="sitemap" href={getAsset('/sitemap-index.xml')} />
+<link rel="alternate" type="application/rss+xml" title="TechResona RSS Feed" href={getAsset('/rss.xml')} />
 
 <!-- Additional SEO Meta Tags -->
 <meta name="format-detection" content="telephone=no" />
+<meta name="color-scheme" content="light dark" />
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1a202c" media="(prefers-color-scheme: dark)" />
+
+<!-- Additional Performance Hints -->
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="width" />
+<meta http-equiv="cleartype" content="on" />
