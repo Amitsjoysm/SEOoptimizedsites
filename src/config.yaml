@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: TechResona
     images:
-      - url: '/favicons/og-image.png'
+      - url: 'https://techresona.com/favicons/og-image.png'
         width: 1200
         height: 630
     type: website
