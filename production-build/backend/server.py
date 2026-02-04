@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, field_validator
 from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime
 import os
@@ -69,19 +69,22 @@ class EnquiryRequest(BaseModel):
     company: Optional[str] = None
     message: str
     
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         if not v or len(v.strip()) < 2:
             raise ValueError('Name must be at least 2 characters long')
         return v.strip()
     
-    @validator('phone')
+    @field_validator('phone')
+    @classmethod
     def validate_phone(cls, v):
         if not v or len(v.strip()) < 10:
             raise ValueError('Please provide a valid phone number')
         return v.strip()
     
-    @validator('message')
+    @field_validator('message')
+    @classmethod
     def validate_message(cls, v):
         if not v or len(v.strip()) < 10:
             raise ValueError('Message must be at least 10 characters long')
