@@ -34,7 +34,7 @@ export default defineConfig({
   
   image: {
     service: {
-      entrypoint: 'astro/assets/services/squoosh',
+      entrypoint: 'astro/assets/services/sharp',
     },
     domains: ['cdn.pixabay.com', 'images.unsplash.com', 'techresona.com'],
     remotePatterns: [
