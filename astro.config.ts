@@ -26,7 +26,7 @@ export default defineConfig({
   site: 'https://techresona.com',
   trailingSlash: 'ignore',
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
     assets: '_astro',
   },
   
