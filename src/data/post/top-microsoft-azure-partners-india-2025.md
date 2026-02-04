@@ -473,4 +473,4 @@ With expertise spanning cloud architecture, AI automation, DevOps, and modern ap
 
 ---
 
-*Last Updated: February 2025*
+*Last Updated: February 2026*
