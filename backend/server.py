@@ -382,6 +382,9 @@ async def get_enquiry(enquiry_id: str):
     """
     Get a specific enquiry by ID
     """
+    if not enquiries_collection:
+        raise HTTPException(status_code=503, detail="Database not configured")
+    
     try:
         from bson import ObjectId
         enquiry = await enquiries_collection.find_one({"_id": ObjectId(enquiry_id)})
@@ -396,4 +399,5 @@ async def get_enquiry(enquiry_id: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    # Run on port 9001 for production deployment
+    uvicorn.run(app, host="0.0.0.0", port=9001)
