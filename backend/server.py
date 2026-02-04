@@ -32,11 +32,23 @@ app.add_middleware(
     allow_headers=["Content-Type", "Accept"],
 )
 
-# MongoDB setup
-MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
-client = AsyncIOMotorClient(MONGO_URL)
-db = client.techresona
-enquiries_collection = db.enquiries
+# MongoDB setup - Optional with graceful degradation
+MONGO_URL = os.environ.get('MONGO_URL', '')
+client = None
+db = None
+enquiries_collection = None
+
+if MONGO_URL:
+    try:
+        client = AsyncIOMotorClient(MONGO_URL)
+        db = client.techresona
+        enquiries_collection = db.enquiries
+        print("✅ MongoDB connected successfully")
+    except Exception as e:
+        print(f"⚠️  MongoDB connection failed: {e}")
+        print("ℹ️  Running without database - enquiries will be logged only")
+else:
+    print("ℹ️  No MONGO_URL provided - running without database")
 
 # Slack webhook URL
 SLACK_WEBHOOK_URL = os.environ.get('SLACK_WEBHOOK_URL', '')
