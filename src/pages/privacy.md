@@ -301,7 +301,7 @@ If you have any concerns about how we handle your personal data, please contact 
 If you have any questions about this Privacy Policy, please contact us:
 
 - **Email**: info@techresona.com / privacy@techresona.com
-- **Phone**: +91 7517402788
+- **Phone**: +91 9834346179
 - **Address**: TechResona Pvt Ltd, Kharadi, Pune 411047, Maharashtra, India
 - **Website**: https://techresona.com
 
