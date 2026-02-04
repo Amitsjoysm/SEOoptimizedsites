@@ -34,10 +34,7 @@ export default defineConfig({
   
   image: {
     service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        limitInputPixels: false,
-      },
+      entrypoint: 'astro/assets/services/noop',
     },
     domains: ['cdn.pixabay.com', 'images.unsplash.com'],
     remotePatterns: [
