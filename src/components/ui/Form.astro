@@ -120,8 +120,9 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
 </form>
 
 <script>
-  // Get the backend URL from environment or use default
-  const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 'https://whatsapp-contact-fix-1.preview.emergentagent.com';
+  // Get the backend URL from environment or construct from current domain
+  const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 
+                      (typeof window !== 'undefined' ? window.location.origin : '');
 
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement;
