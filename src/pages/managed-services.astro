@@ -1,0 +1,428 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'Managed IT Services Pune | 24/7 Remote IT Support India - TechResona',
+  description: 'Professional managed IT services in Pune with 24/7 remote support. Proactive IT infrastructure monitoring, managed help desk services, and comprehensive IT maintenance plans for businesses across India.',
+  keywords: 'managed IT services Pune, 24/7 remote IT support India, IT infrastructure monitoring, proactive IT maintenance, managed help desk services, cloud infrastructure management, IT support for small business, managed service provider Pune, remote IT support near me, network monitoring services, server management India, IT outsourcing Pune, help desk support services, technology management solutions, cybersecurity monitoring services',
+  canonical: 'https://techresona.com/managed-services',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Managed IT Services"
+    title="Professional Managed IT Services with 24/7 Support"
+    subtitle="Keep your business technology running smoothly with comprehensive managed IT services, proactive monitoring, and expert remote support."
+    actions={[
+      { variant: 'primary', text: 'Request Free Consultation', href: '/contact' },
+      { text: 'View Services', href: '#services' },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHw0fHxJVCUyMHN1cHBvcnQlMjBzZXJ2ZXIlMjBtb25pdG9yaW5nfGVufDB8fHx8MTc3MDE4OTIzNHww&ixlib=rb-4.1.0&q=85',
+      alt: 'Managed IT services and 24/7 remote support infrastructure',
+    }}
+  >
+    <Fragment slot="subtitle">
+      <span class="font-semibold">500+ businesses trust us</span> for reliable IT operations.
+      Get expert IT support without the cost of hiring full-time staff.
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Section -->
+  <section class="bg-blue-50 dark:bg-slate-800 py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">24/7</div>
+          <div class="text-gray-600 dark:text-gray-300">Monitoring & Support</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">&lt;15min</div>
+          <div class="text-gray-600 dark:text-gray-300">Average Response Time</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">99.9%</div>
+          <div class="text-gray-600 dark:text-gray-300">Uptime Guarantee</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">500+</div>
+          <div class="text-gray-600 dark:text-gray-300">Businesses Supported</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction Content -->
+  <Content
+    title="Why Choose TechResona for Managed IT Services?"
+    items={[
+      {
+        title: 'Reduced Downtime',
+        description: 'Proactive monitoring and maintenance minimize system failures and keep your business running smoothly.',
+      },
+      {
+        title: 'Predictable IT Costs',
+        description: 'Fixed monthly fees eliminate unexpected IT expenses and make budgeting easier for your business.',
+      },
+      {
+        title: 'Expert Team Access',
+        description: 'Get access to a full team of IT specialists without the cost of hiring full-time employees.',
+      },
+      {
+        title: 'Enhanced Security',
+        description: 'Continuous security monitoring and updates protect your business from evolving cyber threats.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <p class="text-lg mb-4">
+        TechResona delivers comprehensive <strong>managed IT services</strong> that keep your business technology 
+        running smoothly around the clock. Our expert team provides <strong>24/7 remote IT support in India</strong>, 
+        proactive infrastructure monitoring, and complete IT maintenance solutions designed to minimize downtime and 
+        maximize productivity.
+      </p>
+      <p class="text-lg">
+        With our managed services, you get a dedicated IT team without the overhead of hiring full-time staff. 
+        We handle everything from helpdesk support to infrastructure monitoring, allowing you to focus on your 
+        core business while we ensure your technology works flawlessly.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Core Services -->
+  <Features
+    id="services"
+    tagline="Our Managed IT Services"
+    title="Comprehensive IT Management Solutions"
+    subtitle="From 24/7 monitoring to proactive maintenance and expert support."
+    items={[
+      {
+        title: '24/7 IT Infrastructure Monitoring',
+        description: 'Continuous monitoring of your entire IT infrastructure including servers, networks, and applications with automated alert systems and proactive issue resolution.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Remote IT Support Services',
+        description: 'Expert technical support delivered remotely with multi-tier support structure, screen sharing, issue tracking, and software installation.',
+        icon: 'tabler:device-desktop',
+      },
+      {
+        title: 'Managed Help Desk Services',
+        description: 'Professional help desk team available via phone, email, or chat with ticket management, user training, and detailed reporting.',
+        icon: 'tabler:headset',
+      },
+      {
+        title: 'Proactive IT Maintenance Plans',
+        description: 'Scheduled maintenance including system updates, performance optimization, security assessments, and backup verification.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Cloud Infrastructure Management',
+        description: 'Complete management of AWS, Azure, and Google Cloud platforms with resource optimization, cost control, and disaster recovery.',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: 'Cybersecurity Monitoring',
+        description: 'Continuous security monitoring with intrusion detection, firewall management, antivirus protection, and incident response.',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+  />
+
+  <!-- Service Tiers -->
+  <section class="bg-gray-50 dark:bg-slate-800 py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Flexible Service Plans</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Choose the plan that matches your business needs</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Essential Plan -->
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold mb-4">Essential Plan</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">Perfect for small businesses needing basic IT support and monitoring.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Business hours help desk (9 AM - 6 PM)</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Basic infrastructure monitoring</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Monthly system maintenance</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Email and phone support</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>4-hour response time</span>
+            </li>
+          </ul>
+          <a href="/contact" class="block text-center bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition">Get Started</a>
+        </div>
+
+        <!-- Professional Plan -->
+        <div class="bg-blue-600 text-white p-8 rounded-lg shadow-xl transform md:scale-105">
+          <div class="bg-yellow-400 text-blue-900 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">POPULAR</div>
+          <h3 class="text-2xl font-bold mb-4">Professional Plan</h3>
+          <p class="text-blue-100 mb-6">Ideal for growing businesses requiring comprehensive IT management.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>24/7 help desk and monitoring</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>Proactive maintenance and optimization</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>Security monitoring and updates</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>Cloud infrastructure management</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>1-hour priority response time</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-yellow-400 mr-2">✓</span>
+              <span>Quarterly IT strategy reviews</span>
+            </li>
+          </ul>
+          <a href="/contact" class="block text-center bg-white text-blue-600 py-3 px-6 rounded-lg hover:bg-gray-100 transition font-semibold">Get Started</a>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold mb-4">Enterprise Plan</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">Complete IT management for large organizations.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Dedicated account manager</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Custom SLA agreements</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Advanced security and compliance</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Disaster recovery planning</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>15-minute critical response time</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Monthly executive reporting</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>On-site support options</span>
+            </li>
+          </ul>
+          <a href="/contact" class="block text-center bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Features -->
+  <Features2
+    title="Advanced IT Management Capabilities"
+    tagline="Enterprise Solutions"
+    columns={3}
+    items={[
+      {
+        title: 'Backup & Disaster Recovery',
+        description: 'Automated backup solutions with regular testing and rapid disaster recovery capabilities.',
+        icon: 'tabler:server',
+      },
+      {
+        title: 'Network Optimization',
+        description: 'Continuous network monitoring and optimization for maximum performance and reliability.',
+        icon: 'tabler:network',
+      },
+      {
+        title: 'Patch Management',
+        description: 'Automated security patch deployment across all systems to maintain security compliance.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Asset Management',
+        description: 'Complete hardware and software inventory tracking with lifecycle management.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Vendor Management',
+        description: 'Coordinate with your technology vendors for seamless support and issue resolution.',
+        icon: 'tabler:handshake',
+      },
+      {
+        title: 'Compliance Reporting',
+        description: 'Regular compliance audits and reporting for industry regulations and standards.',
+        icon: 'tabler:certificate',
+      },
+    ]}
+  />
+
+  <!-- Industries Served -->
+  <Content
+    isReversed
+    title="Industries We Support"
+    items={[
+      {
+        title: 'Healthcare & Medical',
+        description: 'HIPAA-compliant IT support ensuring patient data security and system availability.',
+      },
+      {
+        title: 'Financial Services',
+        description: 'Secure IT infrastructure management with strict compliance requirements.',
+      },
+      {
+        title: 'Professional Services',
+        description: 'IT support for law firms, consulting agencies, and accounting firms.',
+      },
+      {
+        title: 'Manufacturing',
+        description: 'Robust IT infrastructure supporting production systems and supply chain.',
+      },
+      {
+        title: 'Retail & E-commerce',
+        description: 'High-availability support ensuring online stores and POS systems run without interruption.',
+      },
+      {
+        title: 'Education',
+        description: 'IT support for schools, colleges, and training institutes with student data management.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Trusted Across Multiple Sectors
+      </h3>
+      Our managed IT services are tailored to meet the unique technology needs and compliance requirements of various industries.
+    </Fragment>
+  </Content>
+
+  <!-- Technologies We Manage -->
+  <Features2
+    title="Technologies We Manage"
+    tagline="Comprehensive Expertise"
+    columns={4}
+    items={[
+      {
+        title: 'Windows Server',
+        description: 'Complete management',
+        icon: 'tabler:brand-windows',
+      },
+      {
+        title: 'Linux Systems',
+        description: 'Ubuntu, CentOS, RHEL',
+        icon: 'tabler:brand-ubuntu',
+      },
+      {
+        title: 'AWS Cloud',
+        description: 'Amazon Web Services',
+        icon: 'tabler:brand-aws',
+      },
+      {
+        title: 'Microsoft Azure',
+        description: 'Cloud platform',
+        icon: 'tabler:brand-azure',
+      },
+      {
+        title: 'VMware',
+        description: 'Virtualization',
+        icon: 'tabler:server',
+      },
+      {
+        title: 'Office 365',
+        description: 'Microsoft 365',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Network Security',
+        description: 'Firewall & VPN',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Backup Solutions',
+        description: 'Veeam, Acronis',
+        icon: 'tabler:database',
+      },
+    ]}
+  />
+
+  <!-- FAQs -->
+  <FAQs
+    title="Frequently Asked Questions"
+    tagline="Got Questions?"
+    items={[
+      {
+        title: 'What are managed IT services?',
+        description: "Managed IT services involve outsourcing your company's IT operations to a specialized provider who proactively monitors, manages, and maintains your IT infrastructure. This includes servers, networks, security, help desk support, and more, typically for a fixed monthly fee.",
+      },
+      {
+        title: 'How quickly can you respond to IT issues?',
+        description: 'Response times vary by service plan. Our Essential plan offers 4-hour response, Professional plan provides 1-hour response, and Enterprise plan guarantees 15-minute response for critical issues. Our 24/7 monitoring often allows us to resolve issues before you even notice them.',
+      },
+      {
+        title: 'Can you support our existing IT infrastructure?',
+        description: 'Yes, we work with all major technology platforms and can seamlessly integrate with your existing infrastructure. We perform a comprehensive assessment before onboarding to ensure smooth transition and optimal service delivery.',
+      },
+      {
+        title: 'What is included in proactive maintenance?',
+        description: 'Proactive maintenance includes regular system updates, security patches, performance optimization, backup verification, hardware health monitoring, and preventive measures to avoid system failures. This helps prevent issues before they cause downtime.',
+      },
+      {
+        title: 'How does remote support work?',
+        description: 'Our technicians use secure remote access tools to connect to your systems and resolve issues without requiring on-site visits. This allows for faster response times and immediate problem resolution. For issues requiring physical presence, we coordinate on-site support.',
+      },
+      {
+        title: 'What are the costs of managed IT services?',
+        description: 'Pricing is based on factors including number of users, devices, servers, required service levels, and specific needs. We offer transparent, fixed monthly pricing that makes budgeting predictable. Contact us for a customized quote based on your requirements.',
+      },
+    ]}
+  />
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Experience Worry-Free IT?"
+    subtitle="Let our expert team handle your IT infrastructure while you focus on growing your business. Get a free consultation today."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Request Free Consultation',
+        href: '/contact',
+      },
+      {
+        text: 'Call: +91 7517402788',
+        href: 'tel:+917517402788',
+      },
+    ]}
+  />
+</Layout>

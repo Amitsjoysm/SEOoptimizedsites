@@ -1,0 +1,279 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'Power BI Dashboard Development Pune | Custom Power BI Reports India - TechResona',
+  description: 'Expert Power BI dashboard development in Pune. Custom Power BI reports, implementation services, training & Microsoft Power BI consulting. Transform your data into actionable insights.',
+  keywords: 'Power BI dashboard development Pune, custom Power BI reports India, Power BI consulting services, business intelligence dashboard solutions, Power BI implementation company, data visualization services Pune, Power BI developer near me, Microsoft Power BI expert India, Power BI training Pune, BI dashboard consultant, enterprise business intelligence solutions, Power BI migration services, real-time analytics dashboard, interactive data visualization, Power BI report automation',
+  canonical: 'https://techresona.com/power-bi-solutions',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Power BI Solutions"
+    title="Professional Power BI Dashboard Development in Pune"
+    subtitle="Transform your business data into actionable insights with custom Power BI dashboards, reports, and comprehensive business intelligence solutions."
+    actions={[
+      { variant: 'primary', text: 'Get Free Consultation', href: '/contact' },
+      { text: 'View Services', href: '#services' },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1763038311036-6d18805537e5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGludGVsbGlnZW5jZSUyMGRhc2hib2FyZHxlbnwwfHx8fDE3NzAxODkyMjZ8MA&ixlib=rb-4.1.0&q=85',
+      alt: 'Power BI dashboard development and business intelligence solutions',
+    }}
+  >
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Trusted by 100+ businesses</span> across India for data-driven decision making.
+      From custom dashboards to complete Power BI implementation and training.
+    </Fragment>
+  </Hero>
+
+  <!-- Introduction Content -->
+  <Content
+    title="Why Choose TechResona for Power BI Solutions?"
+    items={[
+      {
+        title: 'Certified Power BI Experts',
+        description: 'Microsoft certified professionals with proven expertise in Power BI development and business intelligence.',
+      },
+      {
+        title: 'Custom Dashboard Solutions',
+        description: 'Tailored Power BI dashboards designed specifically for your business needs and KPIs.',
+      },
+      {
+        title: 'End-to-End Implementation',
+        description: 'Complete Power BI implementation from data integration to deployment and training.',
+      },
+      {
+        title: '24/7 Support',
+        description: 'Ongoing technical support and maintenance to ensure your BI solutions run smoothly.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <p class="text-lg mb-4">
+        TechResona specializes in delivering comprehensive <strong>Power BI solutions</strong> that empower businesses 
+        across India to make data-driven decisions. Our expert team combines technical excellence with deep business 
+        understanding to create custom Power BI dashboards and reports that transform raw data into meaningful insights.
+      </p>
+      <p class="text-lg">
+        Whether you're looking for <strong>Power BI dashboard development in Pune</strong>, custom report creation, 
+        or complete implementation services, we provide end-to-end solutions tailored to your specific business requirements.
+      </p>
+    </Fragment>
+  </Content>
+
+  <!-- Core Services -->
+  <Features
+    id="services"
+    tagline="Our Power BI Services"
+    title="Comprehensive Power BI Development Services"
+    subtitle="From custom dashboards to complete business intelligence solutions."
+    items={[
+      {
+        title: 'Custom Dashboard Development',
+        description: 'Create intuitive, interactive dashboards that visualize your key business metrics in real-time with mobile-responsive designs and role-based access controls.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'Custom Power BI Reports',
+        description: 'Develop comprehensive, custom reports with paginated layouts, ad-hoc reporting capabilities, scheduled generation, and multi-format export options.',
+        icon: 'tabler:file-analytics',
+      },
+      {
+        title: 'Power BI Implementation',
+        description: 'Complete Power BI implementation services from planning to deployment, including environment setup, data source integration, and security configuration.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'Training & Support',
+        description: 'Empower your team with comprehensive Power BI training, best practices workshops, ongoing technical support, and detailed documentation.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Microsoft Power BI Consulting',
+        description: 'Strategic consulting services for BI strategy development, data architecture design, migration planning, and ROI optimization.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Data Integration Services',
+        description: 'Seamlessly connect Power BI with SQL Server, cloud services, APIs, and enable real-time data streaming from multiple sources.',
+        icon: 'tabler:database',
+      },
+    ]}
+  />
+
+  <!-- Implementation Process -->
+  <Steps
+    title="Our Power BI Implementation Process"
+    tagline="Proven Methodology"
+    items={[
+      {
+        title: 'Discovery & Requirements Analysis',
+        description: 'Understanding your business objectives, current data landscape, and specific reporting needs through detailed stakeholder consultations.',
+        icon: 'tabler:clipboard-check',
+      },
+      {
+        title: 'Solution Design',
+        description: 'Creating comprehensive design blueprint including data model architecture, dashboard layouts, and integration strategy.',
+        icon: 'tabler:pencil',
+      },
+      {
+        title: 'Development & Configuration',
+        description: 'Custom development of dashboards, reports, and data connections using Power BI best practices and optimized for performance.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Testing & Quality Assurance',
+        description: 'Rigorous testing to ensure data accuracy, performance optimization, and user acceptance before deployment.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Deployment & Training',
+        description: 'Smooth rollout of the Power BI solution with comprehensive training for end-users and administrators.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Support & Optimization',
+        description: 'Ongoing support, maintenance, and continuous improvement based on user feedback and evolving business needs.',
+        icon: 'tabler:headset',
+      },
+    ]}
+  />
+
+  <!-- Advanced Capabilities -->
+  <Features2
+    title="Advanced Power BI Capabilities"
+    tagline="Enterprise Features"
+    columns={3}
+    items={[
+      {
+        title: 'Real-Time Analytics',
+        description: 'Live data streaming and real-time dashboard updates for immediate business insights.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Mobile-First Design',
+        description: 'Responsive dashboards optimized for tablets and smartphones for on-the-go access.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'Advanced DAX Formulas',
+        description: 'Complex calculations and custom metrics using DAX for deeper data analysis.',
+        icon: 'tabler:math-function',
+      },
+      {
+        title: 'Row-Level Security',
+        description: 'Implement data security ensuring users only see authorized information.',
+        icon: 'tabler:lock',
+      },
+      {
+        title: 'Automated Refresh',
+        description: 'Scheduled data refreshes to keep your dashboards always up-to-date.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Custom Visuals',
+        description: 'Unique visualizations tailored to your specific business requirements.',
+        icon: 'tabler:chart-dots',
+      },
+    ]}
+  />
+
+  <!-- Industries Served -->
+  <Content
+    isReversed
+    title="Industries We Serve"
+    items={[
+      {
+        title: 'Finance & Banking',
+        description: 'Risk analytics, fraud detection, customer segmentation, and regulatory reporting dashboards.',
+      },
+      {
+        title: 'Healthcare',
+        description: 'Patient analytics, operational efficiency tracking, resource utilization, and compliance reporting.',
+      },
+      {
+        title: 'Retail & E-commerce',
+        description: 'Sales performance, inventory management, customer behavior analysis, and market trend identification.',
+      },
+      {
+        title: 'Manufacturing',
+        description: 'Production monitoring, quality control metrics, supply chain analytics, and predictive maintenance.',
+      },
+      {
+        title: 'Education',
+        description: 'Student performance tracking, enrollment analytics, and administrative reporting.',
+      },
+      {
+        title: 'IT & Technology',
+        description: 'Project tracking, resource allocation, performance metrics, and client reporting.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Trusted Across Multiple Industries
+      </h3>
+      Our Power BI solutions have helped businesses across diverse sectors unlock the value of their data and make informed decisions.
+    </Fragment>
+  </Content>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Frequently Asked Questions"
+    tagline="Got Questions?"
+    items={[
+      {
+        title: 'What is Power BI and why does my business need it?',
+        description: "Power BI is Microsoft's business analytics tool that helps visualize data and share insights across your organization. It enables data-driven decision making by transforming raw data into meaningful, interactive dashboards and reports that anyone in your organization can understand and use.",
+      },
+      {
+        title: 'How long does Power BI implementation take?',
+        description: 'Implementation timeline varies based on project scope. A basic dashboard can be ready in 2-3 weeks, while comprehensive enterprise solutions may take 2-3 months. We provide detailed project timelines during the initial consultation.',
+      },
+      {
+        title: 'Can Power BI connect to our existing data sources?',
+        description: 'Yes, Power BI can connect to hundreds of data sources including SQL databases, Excel files, cloud services (Azure, AWS, Google), CRM systems, ERP platforms, and more. We ensure seamless integration with your existing data infrastructure.',
+      },
+      {
+        title: 'Do you provide Power BI training for our team?',
+        description: 'Absolutely! We offer comprehensive training programs tailored to different user roles - from basic dashboard usage for end-users to advanced report development for power users and administrators.',
+      },
+      {
+        title: 'What is the cost of Power BI implementation?',
+        description: 'Costs vary based on project complexity, number of data sources, user count, and required features. We offer flexible pricing models and provide detailed quotes after understanding your specific requirements. Contact us for a free consultation.',
+      },
+      {
+        title: 'Do you provide ongoing support after implementation?',
+        description: 'Yes, we offer comprehensive support packages including 24/7 technical support, regular maintenance, performance optimization, and continuous improvement based on your evolving business needs.',
+      },
+    ]}
+  />
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Transform Your Business Data?"
+    subtitle="Get a free Power BI consultation and discover how our solutions can help you make better, data-driven decisions."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get Started Today',
+        href: '/contact',
+      },
+      {
+        text: 'Call: +91 7517402788',
+        href: 'tel:+917517402788',
+      },
+    ]}
+  />
+</Layout>
