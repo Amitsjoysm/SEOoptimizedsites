@@ -1,6 +1,6 @@
 ---
 // TechResona Logo Component with fully optimized image formats for all screen sizes
-// Fixed aspect ratio to prevent stretching
+// Fixed aspect ratio 25:6 to prevent stretching across all browsers
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center gap-3">
@@ -9,41 +9,55 @@
       type="image/webp" 
       media="(min-width: 1536px)"
       srcset="/images/techresona-logo-xl.webp"
+      width="300"
+      height="72"
     />
     <source 
       type="image/webp" 
       media="(min-width: 1280px)"
       srcset="/images/techresona-logo-lg.webp"
+      width="250"
+      height="60"
     />
     <source 
       type="image/webp" 
       media="(min-width: 768px)"
       srcset="/images/techresona-logo-md.webp"
+      width="200"
+      height="48"
     />
     <source 
       type="image/webp" 
       srcset="/images/techresona-logo-sm.webp"
+      width="150"
+      height="36"
     />
     <source 
       type="image/png" 
       media="(min-width: 1536px)"
       srcset="/images/techresona-logo-xl.png"
+      width="300"
+      height="72"
     />
     <source 
       type="image/png" 
       media="(min-width: 1280px)"
       srcset="/images/techresona-logo-lg.png"
+      width="250"
+      height="60"
     />
     <source 
       type="image/png" 
       media="(min-width: 768px)"
       srcset="/images/techresona-logo-md.png"
+      width="200"
+      height="48"
     />
     <img 
       src="/images/techresona-logo-optimized.png" 
-      alt="TechResona Logo" 
-      class="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
-      style="max-width: 200px; aspect-ratio: 200/48;"
+      alt="TechResona - Cloud Solutions, Web Development & IT Services" 
+      class="h-9 sm:h-10 md:h-12 w-auto"
+      style="object-fit: contain; max-width: 100%; height: auto; aspect-ratio: 25 / 6;"
       width="200"
       height="48"
       fetchpriority="high"
