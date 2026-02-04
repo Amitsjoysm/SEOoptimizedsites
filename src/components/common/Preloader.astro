@@ -7,6 +7,13 @@ const preloadImages = [
 ];
 ---
 
+<!-- Preconnect to critical origins for faster resource loading -->
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+<link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+<!-- Preload critical font files to prevent FOUT -->
+<link rel="preload" href="/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
 <!-- Preload critical images -->
 {preloadImages.map((src) => (
   <link rel="preload" as="image" href={src} fetchpriority="high" />
@@ -21,6 +28,7 @@ const preloadImages = [
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-display: swap;
   }
   
   body {
@@ -32,6 +40,11 @@ const preloadImages = [
   /* Prevent layout shift while loading */
   #main-content {
     min-height: 100vh;
+  }
+  
+  /* Reserve space for hero section to prevent CLS */
+  .hero-image-container {
+    min-height: 576px;
   }
   
   /* Ensure images don't stretch - Critical for logo */
@@ -50,5 +63,11 @@ const preloadImages = [
     display: block;
     width: auto;
     height: auto;
+  }
+  
+  /* Prevent invisible text during font loading (FOIT) */
+  @font-face {
+    font-family: 'Inter Variable';
+    font-display: swap;
   }
 </style>
