@@ -1,28 +1,55 @@
 ---
-// TechResona Logo Component with optimized image formats
+// TechResona Logo Component with fully optimized image formats for all screen sizes
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center gap-3">
   <picture>
     <source 
-      type="image/avif" 
-      srcset="/images/techresona-logo.avif"
+      type="image/webp" 
+      media="(min-width: 1536px)"
+      srcset="/images/techresona-logo-xl.webp"
     />
     <source 
       type="image/webp" 
-      srcset="/images/techresona-logo.webp 1x, /images/techresona-logo@2x.webp 2x"
+      media="(min-width: 1280px)"
+      srcset="/images/techresona-logo-lg.webp"
+    />
+    <source 
+      type="image/webp" 
+      media="(min-width: 768px)"
+      srcset="/images/techresona-logo-md.webp"
+    />
+    <source 
+      type="image/webp" 
+      srcset="/images/techresona-logo-sm.webp"
+    />
+    <source 
+      type="image/png" 
+      media="(min-width: 1536px)"
+      srcset="/images/techresona-logo-xl.png"
+    />
+    <source 
+      type="image/png" 
+      media="(min-width: 1280px)"
+      srcset="/images/techresona-logo-lg.png"
+    />
+    <source 
+      type="image/png" 
+      media="(min-width: 768px)"
+      srcset="/images/techresona-logo-md.png"
     />
     <img 
       src="/images/techresona-logo-optimized.png" 
       alt="TechResona Logo" 
-      class="h-10 md:h-12 w-auto"
-      width="48"
+      class="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto"
+      width="200"
       height="48"
       fetchpriority="high"
       decoding="async"
+      loading="eager"
     />
   </picture>
-  <span class="text-xl md:text-2xl font-bold font-heading text-default dark:text-white tracking-tight">
+  <span class="text-xl md:text-2xl font-bold font-heading text-default dark:text-white tracking-tight whitespace-nowrap">
     TechResona
   </span>
 </span>
