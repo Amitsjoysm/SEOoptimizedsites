@@ -63,4 +63,46 @@ import '@fontsource-variable/inter';
   .border-accent {
     border-color: var(--aw-color-accent);
   }
+
+  /* Cross-browser font rendering optimization */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Prevent FOUC - ensure styles are applied immediately */
+  html {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Fix for logo aspect ratio across browsers */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  picture img {
+    display: block;
+  }
+
+  /* Ensure consistent box-sizing across browsers */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Fix Safari flex container issues */
+  @supports (-webkit-appearance: none) {
+    picture {
+      display: flex;
+      align-items: center;
+    }
+  }
 </style>
+
+<!-- Preload critical font for faster rendering -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />

@@ -1,9 +1,10 @@
 ---
 // TechResona Logo Component with fully optimized image formats for all screen sizes
+// Fixed aspect ratio to prevent stretching
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center gap-3">
-  <picture>
+  <picture class="flex-shrink-0">
     <source 
       type="image/webp" 
       media="(min-width: 1536px)"
@@ -41,7 +42,8 @@
     <img 
       src="/images/techresona-logo-optimized.png" 
       alt="TechResona Logo" 
-      class="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto"
+      class="h-9 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
+      style="max-width: 200px; aspect-ratio: 200/48;"
       width="200"
       height="48"
       fetchpriority="high"

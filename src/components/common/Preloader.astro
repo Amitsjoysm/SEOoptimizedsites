@@ -2,14 +2,33 @@
 // Image Preloader Component
 // Preloads critical images for faster perceived performance
 const preloadImages = [
-  '/images/techresona-logo.png',
-  '/favicons/og-image.png',
+  '/images/techresona-logo-optimized.png',
+  '/favicons/favicon-32x32.png',
 ];
 ---
 
+<!-- Preload critical images -->
 {preloadImages.map((src) => (
-  <link rel="preload" as="image" href={src} />
+  <link rel="preload" as="image" href={src} fetchpriority="high" />
 ))}
 
-<!-- Preload critical fonts if any -->
-<!-- <link rel="preload" as="font" type="font/woff2" href="/fonts/inter.woff2" crossorigin /> -->
+<!-- Preload Inter Variable font for immediate rendering -->
+<link rel="preload" as="style" href="/_astro/inter-latin-variable.css" />
+
+<!-- Critical CSS to prevent FOUC -->
+<style is:inline>
+  /* Minimal critical styles to prevent flash of unstyled content */
+  html {
+    font-family: 'Inter Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Prevent layout shift while loading */
+  #main-content {
+    min-height: 100vh;
+  }
+</style>

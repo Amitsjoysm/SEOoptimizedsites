@@ -151,8 +151,8 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       };
 
       try {
-        // Use relative path - Nginx will proxy to backend
-        const response = await fetch('/api/enquiries', {
+        // Direct connection to backend on localhost:9001
+        const response = await fetch('http://localhost:9001/api/enquiries', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
         // Show error message
         if (errorMessage && document.getElementById('error-text')) {
           document.getElementById('error-text')!.textContent = 
-            error instanceof Error ? error.message : 'Something went wrong. Please try again or contact us directly.';
+            error instanceof Error ? error.message : 'Something went wrong. Please try again or contact us directly at info@techresona.com or +91 9834346179.';
           errorMessage.classList.remove('hidden');
         }
         
