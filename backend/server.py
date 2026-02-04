@@ -293,7 +293,7 @@ async def health_check():
 async def create_enquiry(enquiry: EnquiryRequest):
     """
     Create a new enquiry from the contact form.
-    Saves to MongoDB and sends Slack notification.
+    Saves to MongoDB (if available) and sends notifications.
     """
     try:
         # Prepare enquiry data
@@ -308,15 +308,34 @@ async def create_enquiry(enquiry: EnquiryRequest):
             "source": "website_contact_form"
         }
         
-        # Save to MongoDB
-        result = await enquiries_collection.insert_one(enquiry_data)
-        enquiry_id = str(result.inserted_id)
+        enquiry_id = None
+        
+        # Save to MongoDB if available
+        if enquiries_collection:
+            try:
+                result = await enquiries_collection.insert_one(enquiry_data)
+                enquiry_id = str(result.inserted_id)
+                print(f"✅ Enquiry saved to database: {enquiry_id}")
+            except Exception as e:
+                print(f"⚠️  Failed to save to database: {e}")
+        else:
+            # Log to console if no database
+            print(f"📝 New Enquiry (No DB):")
+            print(f"   Name: {enquiry.name}")
+            print(f"   Email: {enquiry.email}")
+            print(f"   Phone: {enquiry.phone}")
+            print(f"   Company: {enquiry.company}")
+            print(f"   Message: {enquiry.message}")
         
         # Send email notification (non-blocking)
         email_sent = await send_email_notification(enquiry_data)
+        if email_sent:
+            print("✅ Email notification sent")
         
         # Send Slack notification (non-blocking)
         slack_sent = await send_slack_notification(enquiry_data)
+        if slack_sent:
+            print("✅ Slack notification sent")
         
         return EnquiryResponse(
             success=True,
@@ -325,7 +344,7 @@ async def create_enquiry(enquiry: EnquiryRequest):
         )
     
     except Exception as e:
-        print(f"Error creating enquiry: {e}")
+        print(f"❌ Error creating enquiry: {e}")
         raise HTTPException(
             status_code=500,
             detail="Failed to submit enquiry. Please try again or contact us directly."
