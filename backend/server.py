@@ -16,13 +16,20 @@ load_dotenv()
 
 app = FastAPI(title="TechResona API")
 
-# CORS configuration
+# CORS configuration - Only allow requests from techresona.com
+ALLOWED_ORIGINS = [
+    "https://techresona.com",
+    "https://www.techresona.com",
+    "http://localhost:3000",  # For local development
+    "http://localhost:4321",  # For Astro dev server
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["POST", "GET", "OPTIONS"],
+    allow_headers=["Content-Type", "Accept"],
 )
 
 # MongoDB setup
