@@ -6,6 +6,9 @@ from datetime import datetime
 import os
 import httpx
 from typing import Optional
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = FastAPI(title="TechResona API")
 
