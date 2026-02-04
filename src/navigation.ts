@@ -25,6 +25,14 @@ export const headerData = {
           text: 'SEO Services',
           href: getPermalink('/seo-services'),
         },
+        {
+          text: 'Power BI Solutions',
+          href: getPermalink('/power-bi-solutions'),
+        },
+        {
+          text: 'Managed IT Services',
+          href: getPermalink('/managed-services'),
+        },
       ],
     },
     {
@@ -59,6 +67,8 @@ export const footerData = {
         { text: 'AI Automation', href: getPermalink('/ai-automation') },
         { text: 'Microsoft 365', href: getPermalink('/microsoft-365-licenses') },
         { text: 'SEO Services', href: getPermalink('/seo-services') },
+        { text: 'Power BI Solutions', href: getPermalink('/power-bi-solutions') },
+        { text: 'Managed IT Services', href: getPermalink('/managed-services') },
       ],
     },
     {
