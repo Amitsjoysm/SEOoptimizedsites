@@ -120,10 +120,6 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
 </form>
 
 <script>
-  // Get the backend URL from environment or construct from current domain
-  const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 
-                      (typeof window !== 'undefined' ? window.location.origin : '');
-
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement;
     if (!form) return;
@@ -155,7 +151,8 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       };
 
       try {
-        const response = await fetch(`${BACKEND_URL}/api/enquiries`, {
+        // Use relative path - Nginx will proxy to backend
+        const response = await fetch('/api/enquiries', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
