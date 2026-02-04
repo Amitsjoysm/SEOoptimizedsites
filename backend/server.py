@@ -272,11 +272,17 @@ async def root():
 @app.get("/api/health")
 async def health_check():
     try:
-        # Check MongoDB connection
-        await db.command('ping')
+        db_status = "not_configured"
+        if db:
+            try:
+                await db.command('ping')
+                db_status = "connected"
+            except:
+                db_status = "disconnected"
+        
         return {
             "status": "healthy",
-            "database": "connected",
+            "database": db_status,
             "slack_configured": bool(SLACK_WEBHOOK_URL),
             "email_configured": bool(SMTP_USER and SMTP_PASSWORD)
         }
