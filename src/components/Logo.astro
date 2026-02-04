@@ -1,15 +1,25 @@
 ---
-// TechResona Logo Component with optimized image
+// TechResona Logo Component with optimized image formats
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center">
-  <img 
-    src="/images/techresona-logo.png" 
-    alt="TechResona - Web Development & Cloud Solutions" 
-    class="h-10 md:h-12 w-auto"
-    width="200"
-    height="48"
-    loading="eager"
-    decoding="async"
-  />
+  <picture>
+    <source 
+      type="image/avif" 
+      srcset="/images/techresona-logo.avif"
+    />
+    <source 
+      type="image/webp" 
+      srcset="/images/techresona-logo.webp 1x, /images/techresona-logo@2x.webp 2x"
+    />
+    <img 
+      src="/images/techresona-logo-optimized.png" 
+      alt="TechResona - Web Development & Cloud Solutions" 
+      class="h-10 md:h-12 w-auto"
+      width="200"
+      height="48"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
 </span>
