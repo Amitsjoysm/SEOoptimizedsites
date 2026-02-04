@@ -254,7 +254,8 @@ async def health_check():
         return {
             "status": "healthy",
             "database": "connected",
-            "slack_configured": bool(SLACK_WEBHOOK_URL)
+            "slack_configured": bool(SLACK_WEBHOOK_URL),
+            "email_configured": bool(SMTP_USER and SMTP_PASSWORD)
         }
     except Exception as e:
         raise HTTPException(status_code=503, detail=f"Service unavailable: {str(e)}")
