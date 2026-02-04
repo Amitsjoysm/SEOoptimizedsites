@@ -75,7 +75,7 @@ Opting for an Indian Microsoft Azure Partner provides unique strategic advantage
 
 **Contact Information:**
 - **Email:** info@techresona.com
-- **Phone:** +91 7517402788
+- **Phone:** +91 9834346179
 - **Location:** Pune, Maharashtra, India
 
 **Overview:**
@@ -405,7 +405,7 @@ If you're looking for:
 **[Contact TechResona](https://techresona.com/contact) today** and begin your journey toward cloud excellence.
 
 **Email:** info@techresona.com  
-**Phone:** +91 7517402788
+**Phone:** +91 9834346179
 
 ---
 

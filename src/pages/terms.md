@@ -220,7 +220,7 @@ These Terms constitute the entire agreement between You and TechResona Pvt Ltd r
 If you have any questions about these Terms and Conditions, please contact us:
 
 - **Email**: info@techresona.com
-- **Phone**: +91 7517402788
+- **Phone**: +91 9834346179
 - **Address**: TechResona Pvt Ltd, Kharadi, Pune 411047, Maharashtra, India
 - **Website**: https://techresona.com
 
