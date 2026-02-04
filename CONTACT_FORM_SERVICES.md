@@ -29,7 +29,7 @@ The TechResona website's contact form requires the following services to be runn
 ### Issue: Backend URL Not Configured
 The contact form in `/app/src/components/ui/Form.astro` tries to get the backend URL from:
 ```javascript
-const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 'https://contact-form-debug-2.preview.emergentagent.com';
+const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL || 'https://cross-browser-fix-2.preview.emergentagent.com';
 ```
 
 **Problem:** 
