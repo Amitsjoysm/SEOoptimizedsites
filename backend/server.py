@@ -69,6 +69,106 @@ class EnquiryResponse(BaseModel):
     message: str
     enquiry_id: Optional[str] = None
 
+# Helper function to send email notification
+async def send_email_notification(enquiry_data: dict):
+    """Send email notification when a new enquiry is received"""
+    if not all([SMTP_USER, SMTP_PASSWORD, SMTP_HOST]):
+        print("Warning: SMTP configuration incomplete")
+        return False
+    
+    try:
+        # Create email message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = f"🎯 New Enquiry from {enquiry_data['name']}"
+        msg['From'] = SMTP_FROM_EMAIL
+        msg['To'] = SMTP_TO_EMAIL
+        
+        # Create HTML email body
+        html_body = f"""
+        <html>
+        <head>
+            <style>
+                body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
+                .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
+                .header {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; }}
+                .content {{ background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }}
+                .field {{ margin-bottom: 15px; }}
+                .label {{ font-weight: bold; color: #667eea; }}
+                .value {{ margin-top: 5px; }}
+                .footer {{ margin-top: 20px; padding-top: 20px; border-top: 2px solid #ddd; font-size: 12px; color: #666; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h2 style="margin: 0;">🎯 New Contact Form Submission</h2>
+                </div>
+                <div class="content">
+                    <div class="field">
+                        <div class="label">👤 Name:</div>
+                        <div class="value">{enquiry_data['name']}</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">📧 Email:</div>
+                        <div class="value"><a href="mailto:{enquiry_data['email']}">{enquiry_data['email']}</a></div>
+                    </div>
+                    <div class="field">
+                        <div class="label">📱 Phone:</div>
+                        <div class="value"><a href="tel:{enquiry_data['phone']}">{enquiry_data['phone']}</a></div>
+                    </div>
+                    <div class="field">
+                        <div class="label">🏢 Company:</div>
+                        <div class="value">{enquiry_data.get('company', 'Not provided')}</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">💬 Message:</div>
+                        <div class="value">{enquiry_data['message']}</div>
+                    </div>
+                    <div class="footer">
+                        <p>📅 Submitted: {enquiry_data['created_at']}</p>
+                        <p>🌐 Source: TechResona Website Contact Form</p>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        # Create plain text version
+        text_body = f"""
+New Enquiry Received!
+
+Name: {enquiry_data['name']}
+Email: {enquiry_data['email']}
+Phone: {enquiry_data['phone']}
+Company: {enquiry_data.get('company', 'Not provided')}
+
+Message:
+{enquiry_data['message']}
+
+Submitted: {enquiry_data['created_at']}
+Source: Website Contact Form
+        """
+        
+        # Attach both text and HTML versions
+        part1 = MIMEText(text_body, 'plain')
+        part2 = MIMEText(html_body, 'html')
+        msg.attach(part1)
+        msg.attach(part2)
+        
+        # Send email
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.send_message(msg)
+        
+        print(f"Email notification sent successfully to {SMTP_TO_EMAIL}")
+        return True
+        
+    except Exception as e:
+        print(f"Error sending email notification: {e}")
+        return False
+
 # Helper function to send Slack notification
 async def send_slack_notification(enquiry_data: dict):
     """Send notification to Slack when a new enquiry is received"""
