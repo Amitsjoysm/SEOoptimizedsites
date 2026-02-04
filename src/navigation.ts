@@ -90,7 +90,7 @@ export const footerData = {
       title: 'Contact',
       links: [
         { text: 'Email: info@techresona.com', href: 'mailto:info@techresona.com' },
-        { text: 'Phone: +91 7517402788', href: 'tel:+917517402788' },
+        { text: 'Phone: +91 9834346179', href: 'tel:+919834346179' },
         { text: 'Kharadi, Pune 411047', href: '#' },
       ],
     },
