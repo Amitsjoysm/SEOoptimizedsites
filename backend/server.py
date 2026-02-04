@@ -355,6 +355,9 @@ async def list_enquiries(skip: int = 0, limit: int = 50):
     """
     List all enquiries (admin endpoint - should be protected in production)
     """
+    if not enquiries_collection:
+        raise HTTPException(status_code=503, detail="Database not configured")
+    
     try:
         cursor = enquiries_collection.find().sort("created_at", -1).skip(skip).limit(limit)
         enquiries = await cursor.to_list(length=limit)
