@@ -1,783 +1,329 @@
-# TechResona - aPanel Deployment Guide
+# 🚀 TechResona - aaPanel Deployment Guide
 
-## Overview
-This guide covers deploying TechResona's full-stack application (Astro frontend + FastAPI backend) on an aPanel hosting environment with both services running on the same server.
+## 📦 What's Included
 
-## Prerequisites
+```
+production-build/
+├── index.html                    # Main entry point
+├── _astro/                       # Optimized CSS, JS, images
+├── images/                       # Logo and images (WebP optimized)
+├── favicons/                     # All favicon sizes
+├── backend/
+│   ├── server.py                # FastAPI backend
+│   ├── requirements.txt         # Python dependencies
+│   └── .env.example             # Environment template
+├── nginx-techresona.conf        # Nginx configuration
+├── supervisor-backend.conf      # Supervisor configuration
+└── AAPANEL_DEPLOYMENT_GUIDE.md  # This file
+```
 
-### System Requirements
-- aPanel account with SSH access
-- Python 3.8+ support
-- Node.js 18+ (for build process)
-- MongoDB access (Atlas or local)
-- Sufficient storage for application files (~100MB)
+## 🎯 Quick Start (5 Minutes)
 
-### Required Access
-- SSH credentials
-- aPanel file manager access
-- Database credentials (MongoDB)
-- Domain/subdomain configured
-
----
-
-## Part 1: Build Production Files
-
-### Step 1: Build Frontend (Astro)
+### Step 1: Upload & Extract
 
 ```bash
-# On your local machine or build server
-cd /app
-
-# Install dependencies
-npm install
-
-# Build production static site
-npm run build
-
-# This creates /app/dist/ directory with optimized static files
+# Upload techresona-aapanel.tar.gz to your server
+# Extract in your web directory (e.g., /www/wwwroot/techresona.com/)
+cd /www/wwwroot/techresona.com/
+tar -xzf techresona-aapanel.tar.gz
+cd production-build/
 ```
 
-**Output**: The `dist/` folder contains your production-ready static site.
-
-### Step 2: Prepare Backend Files
-
-The backend is already production-ready. Ensure these files are present:
-
-```
-/app/backend/
-├── server.py
-├── requirements.txt
-└── .env (create on server)
-```
-
----
-
-## Part 2: aPanel Server Setup
-
-### Step 1: Upload Files
-
-#### Option A: Using aPanel File Manager
-
-1. Log into aPanel
-2. Open **File Manager**
-3. Navigate to your domain's root directory (usually `public_html/` or `www/`)
-4. Create directory structure:
-   ```
-   public_html/
-   ├── (frontend files from dist/ go here)
-   └── backend/
-       └── (backend files go here)
-   ```
-
-5. **Upload Frontend**:
-   - Upload all contents of `/app/dist/*` to `public_html/`
-   - Upload `/app/.htaccess` to `public_html/`
-
-6. **Upload Backend**:
-   - Create folder: `public_html/backend/`
-   - Upload all files from `/app/backend/` to `public_html/backend/`
-
-#### Option B: Using SCP/SFTP
+### Step 2: Setup Backend
 
 ```bash
-# Upload frontend
-scp -r /app/dist/* username@yourserver.com:~/public_html/
-scp /app/.htaccess username@yourserver.com:~/public_html/
-
-# Upload backend
-scp -r /app/backend/* username@yourserver.com:~/public_html/backend/
-```
-
-### Step 2: Setup Python Virtual Environment
-
-```bash
-# SSH into your aPanel server
-ssh username@yourserver.com
-
 # Navigate to backend directory
-cd ~/public_html/backend
+cd backend/
 
 # Create virtual environment
 python3 -m venv venv
-
-# Activate virtual environment
 source venv/bin/activate
 
-# Upgrade pip
-pip install --upgrade pip
-
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
-```
 
-### Step 3: Configure Environment Variables
+# Create .env file
+cp .env.example .env
 
-Create `.env` file in `~/public_html/backend/`:
-
-```bash
-cd ~/public_html/backend
+# IMPORTANT: Edit .env if you want email/Slack notifications
+# Backend works WITHOUT database - enquiries will be logged
 nano .env
 ```
 
-Add the following:
-
-```env
-# MongoDB Configuration
-MONGO_URL=mongodb://your-mongodb-connection-string
-
-# Slack Webhook (optional)
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-
-# Application Settings
-ENVIRONMENT=production
-DEBUG=false
-```
-
-Save and exit (Ctrl+X, then Y, then Enter)
-
-### Step 4: Setup Backend Service on aPanel
-
-#### Method 1: Using Supervisor (Recommended)
-
-Create supervisor configuration:
+### Step 3: Configure Supervisor
 
 ```bash
+# Copy supervisor config
+sudo cp ../supervisor-backend.conf /etc/supervisor/conf.d/techresona-backend.conf
+
+# Edit the config and update these paths:
+# - command: /www/wwwroot/techresona.com/production-build/backend/venv/bin/uvicorn
+# - directory: /www/wwwroot/techresona.com/production-build/backend
+# - environment: PATH="/www/wwwroot/techresona.com/production-build/backend/venv/bin"
 sudo nano /etc/supervisor/conf.d/techresona-backend.conf
-```
 
-Add the following:
-
-```ini
-[program:techresona-backend]
-command=/home/username/public_html/backend/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8001 --workers 2
-directory=/home/username/public_html/backend
-user=username
-autostart=true
-autorestart=true
-stderr_logfile=/var/log/supervisor/techresona-backend.err.log
-stdout_logfile=/var/log/supervisor/techresona-backend.out.log
-environment=PATH="/home/username/public_html/backend/venv/bin"
-```
-
-Start the service:
-
-```bash
-# Update supervisor
+# Reload supervisor
 sudo supervisorctl reread
 sudo supervisorctl update
-
-# Start backend
 sudo supervisorctl start techresona-backend
 
 # Check status
 sudo supervisorctl status techresona-backend
 ```
 
-#### Method 2: Using Systemd Service
-
-Create service file:
+### Step 4: Configure Nginx
 
 ```bash
-sudo nano /etc/systemd/system/techresona-backend.service
-```
+# Go back to production-build directory
+cd /www/wwwroot/techresona.com/production-build/
 
-Add:
+# Copy nginx config
+sudo cp nginx-techresona.conf /etc/nginx/sites-available/techresona.com
 
-```ini
-[Unit]
-Description=TechResona FastAPI Backend
-After=network.target
-
-[Service]
-User=username
-Group=username
-WorkingDirectory=/home/username/public_html/backend
-Environment="PATH=/home/username/public_html/backend/venv/bin"
-ExecStart=/home/username/public_html/backend/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8001 --workers 2
-Restart=always
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Enable and start:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable techresona-backend
-sudo systemctl start techresona-backend
-sudo systemctl status techresona-backend
-```
-
-#### Method 3: Using PM2
-
-```bash
-# Install PM2 globally
-npm install -g pm2
-
-# Navigate to backend
-cd ~/public_html/backend
-
-# Start backend with PM2
-pm2 start "venv/bin/uvicorn server:app --host 127.0.0.1 --port 8001 --workers 2" --name techresona-api
-
-# Save PM2 configuration
-pm2 save
-
-# Setup PM2 to start on boot
-pm2 startup
-```
-
----
-
-## Part 3: Configure Nginx for aPanel
-
-### Step 1: Create Nginx Configuration
-
-aPanel typically uses Nginx. Create or update your site configuration:
-
-```bash
+# Edit nginx config and update:
+# - root /www/wwwroot/techresona.com/production-build;
 sudo nano /etc/nginx/sites-available/techresona.com
-```
 
-Add the following configuration:
-
-```nginx
-server {
-    listen 80;
-    listen [::]:80;
-    server_name techresona.com www.techresona.com;
-
-    # Redirect HTTP to HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name techresona.com www.techresona.com;
-
-    # SSL Configuration
-    ssl_certificate /etc/letsencrypt/live/techresona.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/techresona.com/privkey.pem;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-
-    # Root directory
-    root /home/username/public_html;
-    index index.html;
-
-    # Security headers
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-
-    # Gzip compression
-    gzip on;
-    gzip_vary on;
-    gzip_min_length 1024;
-    gzip_types text/plain text/css text/xml text/javascript application/javascript application/json application/xml+rss;
-
-    # API Routes - Proxy to Backend
-    location /api/ {
-        proxy_pass http://127.0.0.1:8001;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_cache_bypass $http_upgrade;
-        proxy_read_timeout 90;
-    }
-
-    # Static files caching
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-
-    # Blog routes
-    location /blog/ {
-        try_files $uri $uri/ $uri.html =404;
-    }
-
-    # All other routes - serve index.html for client-side routing
-    location / {
-        try_files $uri $uri/ $uri.html /index.html;
-    }
-
-    # Deny access to sensitive files
-    location ~ /\. {
-        deny all;
-    }
-
-    location ~ \.(env|log|md)$ {
-        deny all;
-    }
-}
-```
-
-Enable the site and restart Nginx:
-
-```bash
-# Create symbolic link
+# Enable site (if using sites-available/sites-enabled pattern)
 sudo ln -s /etc/nginx/sites-available/techresona.com /etc/nginx/sites-enabled/
 
-# Test configuration
+# Test nginx configuration
 sudo nginx -t
 
-# Restart Nginx
-sudo systemctl restart nginx
+# Reload nginx
+sudo systemctl reload nginx
 ```
 
----
-
-## Part 4: SSL Certificate Setup
-
-### Using Let's Encrypt (Certbot)
+### Step 5: Verify Everything Works
 
 ```bash
-# Install Certbot
-sudo apt-get update
-sudo apt-get install certbot python3-certbot-nginx
+# Check backend is running
+curl http://localhost:9001/api/health
 
-# Obtain SSL certificate
-sudo certbot --nginx -d techresona.com -d www.techresona.com
+# Should return:
+# {"status":"healthy","database":"not_configured","slack_configured":false,"email_configured":false}
 
-# Auto-renewal is configured automatically
-# Test renewal
-sudo certbot renew --dry-run
-```
+# Check frontend (replace with your domain)
+curl https://techresona.com/
 
----
-
-## Part 5: MongoDB Setup
-
-### Option A: MongoDB Atlas (Recommended)
-
-1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create free cluster
-3. Add database user
-4. Whitelist IP addresses:
-   - Get your server IP: `curl ifconfig.me`
-   - Add to Atlas IP whitelist
-5. Get connection string
-6. Update `.env` file with connection string:
-
-```env
-MONGO_URL=mongodb+srv://username:password@cluster.mongodb.net/techresona?retryWrites=true&w=majority
-```
-
-### Option B: Local MongoDB
-
-```bash
-# Install MongoDB
-sudo apt-get install mongodb-org
-
-# Start MongoDB
-sudo systemctl start mongod
-sudo systemctl enable mongod
-
-# Verify
-sudo systemctl status mongod
-
-# Connection string
-MONGO_URL=mongodb://localhost:27017/techresona
-```
-
----
-
-## Part 6: Verification and Testing
-
-### Step 1: Test Frontend
-
-```bash
-# Visit your domain
-https://techresona.com
-
-# Check if pages load:
-- Homepage: https://techresona.com/
-- Blog: https://techresona.com/blog/
-- Cloud Solutions: https://techresona.com/cloud-solutions/
-- AI Automation: https://techresona.com/ai-automation/
-```
-
-### Step 2: Test Backend API
-
-```bash
-# Test API health
-curl https://techresona.com/api/
-
-# Expected response:
-{"status": "active", "message": "TechResona API is running"}
-
-# Test contact form
-curl -X POST https://techresona.com/api/enquiry \
+# Test contact form API
+curl -X POST http://localhost:9001/api/enquiries \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Test User",
     "email": "test@example.com",
     "phone": "1234567890",
-    "message": "Test message"
+    "message": "This is a test message"
   }'
 ```
 
-### Step 3: Check Backend Logs
+## ⚙️ Configuration Details
 
-```bash
-# If using Supervisor
-sudo tail -f /var/log/supervisor/techresona-backend.out.log
-sudo tail -f /var/log/supervisor/techresona-backend.err.log
+### Backend on localhost:9001
 
-# If using Systemd
-sudo journalctl -u techresona-backend -f
+- Backend runs ONLY on `localhost:9001` (not publicly accessible)
+- Nginx proxies `/api/*` requests to `http://127.0.0.1:9001`
+- Frontend connects to backend via `http://localhost:9001/api/enquiries`
 
-# If using PM2
-pm2 logs techresona-api
+### Frontend Contact Form
+
+- Located at: `https://techresona.com/contact/`
+- Form submits to: `http://localhost:9001/api/enquiries`
+- Success: Shows green message and resets form
+- Error: Shows red message with details
+
+### CORS Configuration
+
+Backend accepts requests from:
+- `https://techresona.com`
+- `https://www.techresona.com`
+- `http://localhost:4321` (for local development)
+
+Configured in `backend/server.py` lines 20-25
+
+### Database (Optional)
+
+- MongoDB is **OPTIONAL**
+- Backend works WITHOUT database
+- Enquiries are logged to supervisor logs: `/var/log/supervisor/techresona-backend.out.log`
+- To enable MongoDB: Add `MONGO_URL` to `.env`
+
+### Email Notifications (Optional)
+
+To receive email notifications for new enquiries:
+
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+SMTP_FROM_EMAIL=noreply@techresona.com
+SMTP_TO_EMAIL=info@techresona.com
 ```
 
-### Step 4: Check Nginx Logs
+**For Gmail:** Use App Password, not regular password
+1. Enable 2FA on Gmail
+2. Generate App Password: https://myaccount.google.com/apppasswords
+3. Use that password in `.env`
 
-```bash
-# Access logs
-sudo tail -f /var/log/nginx/access.log
+### Slack Notifications (Optional)
 
-# Error logs
-sudo tail -f /var/log/nginx/error.log
+To receive Slack notifications:
+
+```env
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
 ```
 
----
+Create webhook: https://api.slack.com/messaging/webhooks
 
-## Part 7: Performance Optimization
+## 🔧 aaPanel Specific Setup
 
-### Step 1: Enable HTTP/2
+### If Using aaPanel Web Interface:
 
-Already configured in Nginx configuration above.
+1. **Create Website:**
+   - Website > Add Site
+   - Domain: `techresona.com`
+   - Root: `/www/wwwroot/techresona.com/production-build`
+   - PHP: Not needed (pure HTML/JS frontend)
 
-### Step 2: Configure Browser Caching
+2. **SSL Certificate:**
+   - Website > Settings > SSL
+   - Use Let's Encrypt (free)
+   - Enable "Force HTTPS"
 
-Already configured in Nginx configuration with proper cache headers.
+3. **Nginx Configuration:**
+   - Website > Settings > Config
+   - Replace entire config with contents of `nginx-techresona.conf`
+   - Update the `root` path to match your installation
 
-### Step 3: Enable Gzip Compression
+4. **Supervisor:**
+   - App Store > Supervisor
+   - Add new process:
+     - Name: `techresona-backend`
+     - Directory: `/www/wwwroot/techresona.com/production-build/backend`
+     - Command: `/www/wwwroot/techresona.com/production-build/backend/venv/bin/uvicorn server:app --host 127.0.0.1 --port 9001 --workers 2`
+     - User: `www` (or your web user)
+     - Autostart: Yes
+     - Autorestart: Yes
 
-Already configured in Nginx configuration.
+## 🐛 Troubleshooting
 
-### Step 4: Optimize Backend Workers
-
-```bash
-# Adjust number of workers based on CPU cores
-# Rule: workers = (2 x CPU cores) + 1
-
-# Check CPU cores
-nproc
-
-# Update uvicorn command with appropriate workers
-# For 2 cores: --workers 5
-# For 4 cores: --workers 9
-```
-
----
-
-## Part 8: Monitoring and Maintenance
-
-### Setup Monitoring
-
-```bash
-# Monitor backend service
-watch -n 5 'sudo supervisorctl status techresona-backend'
-
-# Monitor system resources
-htop
-
-# Monitor disk usage
-df -h
-
-# Monitor nginx status
-sudo systemctl status nginx
-```
-
-### Automated Backups
-
-Create backup script:
+### Backend Won't Start
 
 ```bash
-sudo nano /usr/local/bin/backup-techresona.sh
-```
-
-Add:
-
-```bash
-#!/bin/bash
-DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_DIR="/home/username/backups"
-APP_DIR="/home/username/public_html"
-
-mkdir -p $BACKUP_DIR
-
-# Backup application files
-tar -czf $BACKUP_DIR/techresona-$DATE.tar.gz -C $APP_DIR .
-
-# Backup MongoDB (if local)
-mongodump --out=$BACKUP_DIR/mongo-$DATE --db=techresona
-
-# Keep only last 7 days
-find $BACKUP_DIR -name "techresona-*.tar.gz" -mtime +7 -delete
-find $BACKUP_DIR -name "mongo-*" -type d -mtime +7 -exec rm -rf {} +
-
-echo "Backup completed: $DATE"
-```
-
-Make executable and schedule:
-
-```bash
-sudo chmod +x /usr/local/bin/backup-techresona.sh
-
-# Add to crontab (daily at 2 AM)
-crontab -e
-0 2 * * * /usr/local/bin/backup-techresona.sh >> /var/log/techresona-backup.log 2>&1
-```
-
----
-
-## Part 9: Update Deployment
-
-### Updating the Application
-
-```bash
-# 1. Build new version locally
-cd /app
-npm run build
-
-# 2. Backup current version on server
-ssh username@yourserver.com
-cd ~/public_html
-tar -czf backup-$(date +%Y%m%d).tar.gz dist/ backend/
-
-# 3. Upload new frontend files
-scp -r /app/dist/* username@yourserver.com:~/public_html/
-
-# 4. If backend changed, upload backend
-scp /app/backend/server.py username@yourserver.com:~/public_html/backend/
-
-# 5. Restart services
-ssh username@yourserver.com
-sudo supervisorctl restart techresona-backend
-sudo systemctl reload nginx
-
-# 6. Verify deployment
-curl https://techresona.com/api/
-```
-
----
-
-## Part 10: Troubleshooting
-
-### Issue: 502 Bad Gateway
-
-**Cause**: Backend service not running
-
-**Solution**:
-```bash
-# Check backend status
-sudo supervisorctl status techresona-backend
-
-# Restart if needed
-sudo supervisorctl restart techresona-backend
-
 # Check logs
 sudo tail -f /var/log/supervisor/techresona-backend.err.log
-```
 
-### Issue: 404 on API Routes
-
-**Cause**: Nginx proxy configuration issue
-
-**Solution**:
-```bash
-# Test nginx configuration
-sudo nginx -t
-
-# Check if backend is listening
-netstat -tlnp | grep 8001
-
-# Restart nginx
-sudo systemctl restart nginx
-```
-
-### Issue: Database Connection Failed
-
-**Solution**:
-```bash
-# Check .env file
-cat ~/public_html/backend/.env
-
-# Test MongoDB connection
-mongosh "your-connection-string"
-
-# Check MongoDB Atlas IP whitelist
-# Add server IP to whitelist
-```
-
-### Issue: High Memory Usage
-
-**Solution**:
-```bash
-# Check memory usage
-free -h
-
-# Reduce uvicorn workers
-# Edit supervisor config and reduce --workers
-sudo nano /etc/supervisor/conf.d/techresona-backend.conf
-sudo supervisorctl restart techresona-backend
-```
-
-### Issue: Slow Page Load
-
-**Solution**:
-```bash
-# Check if gzip is enabled
-curl -H "Accept-Encoding: gzip" -I https://techresona.com/
-
-# Verify caching headers
-curl -I https://techresona.com/
-
-# Check nginx error logs
-sudo tail -f /var/log/nginx/error.log
-```
-
----
-
-## Part 11: Security Checklist
-
-- [ ] SSL certificate installed and auto-renewal configured
-- [ ] HTTPS enforced (HTTP redirects to HTTPS)
-- [ ] `.env` file has restricted permissions (600)
-- [ ] MongoDB uses authentication and SSL
-- [ ] Backend only accessible via localhost (127.0.0.1)
-- [ ] Security headers configured in Nginx
-- [ ] Firewall configured (UFW recommended)
-- [ ] Regular backups automated
-- [ ] Keep system packages updated
-- [ ] Monitor logs regularly
-- [ ] Disable unnecessary services
-- [ ] Use strong passwords
-- [ ] Enable fail2ban for SSH protection
-
-### Setup Firewall (UFW)
-
-```bash
-# Install UFW
-sudo apt-get install ufw
-
-# Allow SSH
-sudo ufw allow 22/tcp
-
-# Allow HTTP/HTTPS
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-
-# Enable firewall
-sudo ufw enable
-
-# Check status
-sudo ufw status
-```
-
----
-
-## Part 12: Performance Metrics
-
-### Expected Performance
-
-- **Page Load Time**: < 2 seconds
-- **API Response Time**: < 500ms
-- **Time to First Byte (TTFB)**: < 600ms
-- **First Contentful Paint (FCP)**: < 1.8s
-- **Largest Contentful Paint (LCP)**: < 2.5s
-- **Cumulative Layout Shift (CLS)**: < 0.1
-- **First Input Delay (FID)**: < 100ms
-
-### Monitoring Tools
-
-```bash
-# Check page speed
-curl -o /dev/null -s -w '%{time_total}\n' https://techresona.com/
-
-# Monitor API response time
-curl -o /dev/null -s -w '%{time_total}\n' https://techresona.com/api/
-
-# Use external tools
-# - Google PageSpeed Insights
-# - GTmetrix
-# - Pingdom
-```
-
----
-
-## Summary
-
-🎉 **Your TechResona application is now fully deployed on aPanel!**
-
-### What's Deployed:
-
-✅ **Frontend (Astro)**
-- Static site built and optimized
-- Served by Nginx from `public_html/`
-- All pages accessible with clean URLs
-- Blog posts at `/blog/`
-- Images optimized and cached
-
-✅ **Backend (FastAPI)**
-- Running on localhost:8001
-- Proxied through Nginx at `/api/*`
-- MongoDB connected
-- Contact form functional
-- Auto-restart on failure
-
-✅ **Infrastructure**
-- SSL certificate installed
-- HTTPS enforced
-- Gzip compression enabled
-- Browser caching configured
-- Security headers in place
-
-### Quick Commands Reference
-
-```bash
-# Check backend status
-sudo supervisorctl status techresona-backend
+# Common issues:
+# 1. Wrong path in supervisor config
+# 2. Virtual environment not activated
+# 3. Missing dependencies
 
 # Restart backend
 sudo supervisorctl restart techresona-backend
-
-# Restart Nginx
-sudo systemctl restart nginx
-
-# View backend logs
-sudo tail -f /var/log/supervisor/techresona-backend.out.log
-
-# View Nginx logs
-sudo tail -f /var/log/nginx/access.log
-
-# Test API
-curl https://techresona.com/api/
-
-# Check SSL certificate
-sudo certbot certificates
 ```
 
-### Support
+### API Returns 502 Bad Gateway
 
-**TechResona Support**
+```bash
+# Check if backend is running
+sudo supervisorctl status techresona-backend
+netstat -tlnp | grep 9001
+
+# If not running, check error logs
+sudo tail -n 50 /var/log/supervisor/techresona-backend.err.log
+
+# Restart services
+sudo supervisorctl restart techresona-backend
+sudo systemctl reload nginx
+```
+
+### Contact Form Not Working
+
+```bash
+# 1. Test backend directly
+curl -X POST http://localhost:9001/api/enquiries \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@test.com","phone":"1234567890","message":"Test message"}'
+
+# 2. Check browser console for errors (F12)
+# 3. Check nginx error logs
+sudo tail -f /var/log/nginx/error.log
+
+# 4. Verify CORS headers
+curl -I https://techresona.com/api/health
+```
+
+### Logo Appears Stretched
+
+- This has been fixed in the latest build
+- Logo now uses `object-fit: contain` and proper aspect ratio
+- Clear browser cache: Ctrl+F5
+
+### CSS Not Loading / Unstyled Content
+
+- Fixed with critical CSS inlining
+- Fonts preloaded for faster rendering
+- Clear browser cache if issues persist
+
+## 📊 Performance Optimizations Included
+
+✅ WebP images with PNG fallbacks
+✅ Responsive images for all screen sizes  
+✅ Critical CSS inlined
+✅ Font preloading
+✅ Lazy loading for images
+✅ Gzip compression
+✅ Browser caching headers
+✅ Minified HTML/CSS/JS
+✅ Security headers
+✅ HTTPS enforcement
+
+## 🔐 Security Best Practices
+
+1. **Always use HTTPS** - Configured in nginx
+2. **Keep backend internal** - Only localhost:9001
+3. **Update dependencies** regularly
+4. **Use strong passwords** for SMTP/database
+5. **Enable firewall** - Only ports 80, 443, 22
+6. **Regular backups** - Database + files
+
+## 📞 Support
+
+- **Email:** support@techresona.com
+- **Phone:** +91 9834346179
+- **Location:** Kharadi, Pune, India
+
+## ✅ Post-Deployment Checklist
+
+- [ ] Backend running on localhost:9001
+- [ ] Frontend accessible via HTTPS
+- [ ] Contact form submits successfully
+- [ ] Logo displays correctly (not stretched)
+- [ ] All pages load without CSS issues
+- [ ] Mobile responsive design works
+- [ ] SSL certificate active
+- [ ] Email notifications working (if configured)
+- [ ] Slack notifications working (if configured)
+- [ ] 404 page shows correctly
+- [ ] Robots.txt accessible
+- [ ] Sitemap.xml accessible
+
+## 🎉 Congratulations!
+
+Your TechResona website is now live and optimized! 
+
+**Next Steps:**
+1. Test the contact form
+2. Monitor supervisor logs for enquiries
+3. Set up email/Slack notifications
+4. Configure Google Analytics (if needed)
+5. Submit sitemap to Google Search Console
+
+**Production URLs:**
 - Website: https://techresona.com
-- Email: support@techresona.com
-- Phone: +91-XXXXXXXXXX
+- Contact: https://techresona.com/contact
+- API Health: https://techresona.com/api/health (via nginx proxy)
 
 ---
-
-*Last Updated: January 29, 2025*
-*Version: 1.0 - aPanel Deployment*
+Built with ❤️ by TechResona Team
