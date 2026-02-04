@@ -112,8 +112,8 @@ TechResona stands out as India's most comprehensive cloud solutions provider, co
 
 ### Contact TechResona
 **Website**: [https://techresona.com](https://techresona.com)  
-**Email**: contact@techresona.com  
-**Phone**: +91 7517402788  
+**Email**: info@techresona.com  
+**Phone**: +91 9834346179  
 **Location**: Pune, Maharashtra, India
 
 ---
@@ -503,7 +503,7 @@ Choosing the right cloud solutions provider is a strategic decision that impacts
 **Contact TechResona today** for a free cloud readiness assessment and discover how we can accelerate your digital transformation journey.
 
 🌐 **Visit**: [https://techresona.com](https://techresona.com)  
-📧 **Email**: contact@techresona.com  
+📧 **Email**: info@techresona.com  
 📱 **Schedule Consultation**: [Book a Free Strategy Session](https://techresona.com/contact)
 
 ---
