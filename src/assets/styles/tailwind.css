@@ -21,6 +21,7 @@
 }
 
 /* Logo aspect ratio preservation - Cross-browser compatibility */
+/* Updated for actual logo dimensions: 694x543 (aspect ratio ~1.278:1) */
 @layer components {
   picture img {
     /* Prevent stretching in all browsers */
@@ -28,11 +29,11 @@
     max-width: 100%;
     height: auto;
     /* Explicit aspect ratio support with fallback */
-    aspect-ratio: 25 / 6;
+    aspect-ratio: 694 / 543;
   }
   
   /* Safari fallback for aspect-ratio */
-  @supports not (aspect-ratio: 25 / 6) {
+  @supports not (aspect-ratio: 694 / 543) {
     picture img {
       width: auto;
       height: 100%;
