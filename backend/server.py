@@ -282,6 +282,9 @@ async def create_enquiry(enquiry: EnquiryRequest):
         result = await enquiries_collection.insert_one(enquiry_data)
         enquiry_id = str(result.inserted_id)
         
+        # Send email notification (non-blocking)
+        email_sent = await send_email_notification(enquiry_data)
+        
         # Send Slack notification (non-blocking)
         slack_sent = await send_slack_notification(enquiry_data)
         
